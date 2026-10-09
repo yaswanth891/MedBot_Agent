@@ -1,0 +1,12 @@
+streamlit
+torch
+faiss-cpu
+numpy
+PyPDF2
+sentence-transformers
+transformers
+requests
+python-dotenv
+langchain-core>=0.3,<2
+langchain-openai>=0.3,<2
+langsmith>=0.3,<1
