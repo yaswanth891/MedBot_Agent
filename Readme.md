@@ -140,35 +140,3 @@ you have both.
 ## Medical Disclaimer
 
 > **MediBot provides general health information based on uploaded guidelines only.** It is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health providers with any questions you may have regarding a medical condition.
-
-## LangChain + LangSmith integration (replica)
-
-The original Streamlit interface, PDF upload behavior, FAISS embedding/search,
-confidence gates, clinical risk rules, extractive fallback and local FLAN-T5
-fallback are retained. The OpenAI-compatible API generation path now calls
-`langchain_backend.py` (`ChatOpenAI`) first; if that fails, the original
-`requests` endpoint is retried before the original local model fallback.
-No extra UI controls or new user-visible features were introduced.
-
-### API keys and where to put them
-
-1. Copy `.example.env` to `.env` in the **project root**, beside `app.py`.
-2. Provide `LLM_API_KEY` from your selected provider (Groq: https://console.groq.com/keys ;
-   OpenRouter: https://openrouter.ai/settings/keys ;
-   Gemini: https://aistudio.google.com/app/apikey ).
-   Set the matching `LLM_BASE_URL` (full `/chat/completions` URL) and `LLM_MODEL`.
-   Existing Groq example values in `.example.env` are placeholders, not live credentials.
-   For local Ollama use `LLM_API_KEY=ollama` and the Ollama URL and model
-   in the example file; no paid cloud key is required.
-3. **Optional**: Get a LangSmith API key from https://smith.langchain.com/ ,
-   set `LANGSMITH_API_KEY` and change `LANGSMITH_TRACING=true` in `.env`.
-   Choose `LANGSMITH_PROJECT` as desired. LangSmith tracing captures LLM prompts
-   and replies, which can contain health data; leave disabled unless suitable
-   privacy, consent, retention, and access safeguards are in place.
-4. Run `pip install -r requirements.txt`, then `streamlit run app.py`.
-   Never commit `.env` or a real API key. No key is needed for the local
-   sentence-transformer embeddings or FAISS index.
-
-LangSmith automatically traces LangChain LLM requests when explicitly enabled.
-The surrounding custom RAG retrieval and triage logic remains unchanged and is
-not represented as standalone LangChain chain steps in these traces.
