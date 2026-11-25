@@ -1,4 +1,4 @@
-# MediBot — Intelligent Healthcare Assistant
+# MediBot — Intelligent Healthcare Assistant.
 
 **MediBot** is a conversational RAG (Retrieval-Augmented Generation) chatbot designed to provide general medical information and personalized symptom assessments. It uses an LLM (Hugging Face `openai/gpt-oss-20b` by default, with a local **FLAN-T5-Large** fallback) and **FAISS** vector search to deliver answers **grounded in a provided medical knowledge base** — and says "I don't have enough knowledge" for anything the knowledge base doesn't cover.
 
